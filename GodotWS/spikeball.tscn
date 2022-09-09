@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Assets/Tiles/spikeBall_2.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Tiles/spikeBall1.png" type="Texture" id=2]
@@ -12,28 +12,19 @@ animations = [ {
 "speed": 8.0
 } ]
 
-[sub_resource type="CircleShape2D" id=2]
-radius = 56.0
-
 [sub_resource type="CircleShape2D" id=3]
 radius = 70.0
 
-[node name="spikeball" type="StaticBody2D"]
-scale = Vector2( 0.4, 0.4 )
+[node name="spikeball" type="Area2D"]
 collision_layer = 8
 script = ExtResource( 3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 1, 1 )
 frames = SubResource( 1 )
-frame = 1
 playing = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 2 )
-
-[node name="Area2D" type="Area2D" parent="."]
-collision_layer = 8
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 shape = SubResource( 3 )
-[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+
+[connection signal="body_entered" from="." to="." method="_on_spikeball_body_entered"]
